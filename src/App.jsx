@@ -81,12 +81,12 @@ function App() {
       <div className="weather flex justify-center items-center min-h-screen max-w-screen overflow-hidden font-sans">
         <img src="./bg.jpg" alt="" className="absolute top-0 w-full h-full" />
         <div className="w-info bg-black bg-opacity-50 w-1/3 h-[80vh] rounded-lg relative z-10">
-          <div className="cityinput flex">
-            <div className="searchbar gap-3">
+          <div className="cityinput flex justify-around">
+            <div className="searchbar w-3/5">
               <input
                 type="text"
                 placeholder="Enter city name"
-                className="w-4/5 h-10 rounded-lg mt-3 mx-6 px-6 bg-gray-800 text-white"
+                className="w-full h-10 rounded-lg mt-3 px-6 bg-gray-800 text-white"
                 value={value}
                 onChange={handleChange}
               />
@@ -96,7 +96,7 @@ function App() {
                   return (
                     <option
                       key={city.id}
-                      className="w-4/5 min-h-10 rounded-lg mt-3 mx-6 px-6 bg-gray-800 text-white cursor-pointer text-center pt-2"
+                      className="w-full min-h-10 rounded-lg px-6 bg-gray-800 text-white cursor-pointer text-center pt-2 text-wrap"
                       value={city.name}
                       onClick={setInputText}
                     >
@@ -106,17 +106,17 @@ function App() {
                 })}
             </div>
             <button
-              className="w-1/5 h-10 rounded-lg mt-3 mx-6 px-3 bg-sky-800 text-white"
+              className="w-1/5 h-10 rounded-lg mt-3 px-3 bg-sky-800 text-white hover:shadow-lg hover:shadow-slate-700 hover:text-lg"
               onClick={getCity}
             >
               Search
             </button>
           </div>
-          <div className="weahterUpdate flex flex-col items-center h-[60%] w-full">
-            <img src={`${weather.condition.icon}`} width={90} />
-            <h1 className="text-white text-xl">{weather.temp_c} &deg;C</h1>
+          <div className="weahterUpdate flex flex-col items-center justify-center h-[60%] w-full">
+            <img src={weather.condition.icon?`${weather.condition.icon}`:"./cloud.svg"} width={90} />
+            <h1 className="text-white text-xl">{weather.temp_c?weather.temp_c:"0.0"} &deg;C</h1>
             <h1 className="text-white text-2xl px-8 mt-2 font-semibold text-center">
-              {location.name} , {location.country}
+            {location.name?location.name:"Wah Cantt"} , {location.country?location.country:"Pakistan"}
             </h1>
           </div>
           <div className="humidity absolute bottom-4 left-4 flex gap-3">
@@ -132,10 +132,10 @@ function App() {
           </div>
           <div className="dayInfo absolute bottom-4 right-4 flex flex-col">
             <span className="text-white text-xl font-semibold">Weather</span>
-            <span className="text-white text-md">{weather.condition.text}</span>
+            <span className="text-white text-md">{weather.condition.text?weather.condition.text:"Stormy"}</span>
             <span className="text-white text-sm">{date + "\t" + hour}</span>
             <span className="text-white text-sm">
-              {days[new Date(weather.last_updated).getDay() - 1]}
+              {days[new Date(weather.last_updated).getDay() - 1]?days[new Date(weather.last_updated).getDay() - 1]:"Sunday"}
             </span>
           </div>
         </div>
