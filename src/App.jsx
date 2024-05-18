@@ -80,8 +80,8 @@ function App() {
     <>
       <div className="weather flex justify-center items-center min-h-screen max-w-screen overflow-hidden font-sans">
         <img src="./bg.jpg" alt="" className="absolute top-0 w-full h-full" />
-        <div className="w-info bg-black bg-opacity-50 w-1/3 h-[80vh] rounded-lg relative z-10">
-          <div className="cityinput flex justify-around">
+        <div className="w-info bg-black bg-opacity-50 w-1/3 h-[80vh] rounded-lg relative z-10 flex flex-col">
+          <div className="cityinput flex justify-around w-full absolute z-10 max-h-[10vh]">
             <div className="searchbar w-3/5">
               <input
                 type="text"
@@ -96,7 +96,7 @@ function App() {
                   return (
                     <option
                       key={city.id}
-                      className="w-full min-h-10 rounded-lg px-6 bg-gray-800 text-white cursor-pointer text-center pt-2 text-wrap"
+                      className="w-full min-h-10 rounded-lg px-6 bg-gray-800 text-white cursor-pointer text-center pt-2 text-wrap z-10"
                       value={city.name}
                       onClick={setInputText}
                     >
@@ -112,7 +112,7 @@ function App() {
               Search
             </button>
           </div>
-          <div className="weahterUpdate flex flex-col items-center justify-center h-[60%] w-full">
+          <div className="weahterUpdate flex flex-col items-center justify-center h-[60%] w-full mt-[10vh]">
             <img src={weather.condition.icon?`${weather.condition.icon}`:"./cloud.svg"} width={90} />
             <h1 className="text-white text-xl">{weather.temp_c?weather.temp_c:"0.0"} &deg;C</h1>
             <h1 className="text-white text-2xl px-8 mt-2 font-semibold text-center">
